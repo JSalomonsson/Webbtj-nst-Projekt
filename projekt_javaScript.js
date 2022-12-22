@@ -16,6 +16,7 @@ async function searchForGame(name) {
 }
 
 async function main(searchTerm) {
+  h4.innerHTML = "";
   console.log(searchTerm + " this is the search term");
   const game = await searchForGame(searchTerm);
   if (game) {
@@ -24,6 +25,7 @@ async function main(searchTerm) {
     getPriceInfo(game.id, game.name);
   } else {
     console.log("Game not found");
+    alert("Could not find the game");
   }
 }
 
@@ -50,6 +52,8 @@ async function getPriceInfo(appId) {
   try {
     const response = await fetch(`https://www.cheapshark.com/api/1.0/deals?steamAppID=${appId}`);
     const data = await response.json();
+    var header = document.getElementById('h4');
+  
     
     let lowestPrice = 100000;
     let lowestPriceDeal;
@@ -60,6 +64,10 @@ async function getPriceInfo(appId) {
         lowestPriceDeal = data[i];
       }
   }
+  header.innerHTML = 
+  "Lowest Price: $" + lowestPriceDeal.salePrice;
+  
+
   console.log(lowestPriceDeal.salePrice, lowestPriceDeal.storeID);
   getStoreInfo(lowestPriceDeal.storeID);
 
@@ -81,7 +89,8 @@ async function getStoreInfo(storeId) {
       break;
     }
   }
-
+  var h4 = document.getElementById("h4");
+  h4.innerHTML += "\n Store name: " + store.storeName;
   console.log(store.storeName);
 
 }
