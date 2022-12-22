@@ -22,7 +22,11 @@
             </style> 
     </head> 
         <body>   
-            <button class="button" onclick="main()">Click me</button>
+            <form>
+                <label for="search-field">Search:</label>
+                <input type="search" id="search-field" name="searchField">
+                <button type="button" onclick="main(this.form.searchField.value)">Search</button>
+              </form>
             <div id="infobox" style="border: 1px solid black; border-color: black;">
                 <img id="my-image" src="placeholder.jpg" alt="">
                 <h3 id="h3">Header</h3>

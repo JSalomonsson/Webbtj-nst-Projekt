@@ -15,8 +15,9 @@ async function searchForGame(name) {
   }
 }
 
-async function main() {
-  const game = await searchForGame("Just Cause 2");
+async function main(searchTerm) {
+  console.log(searchTerm + " this is the search term");
+  const game = await searchForGame(searchTerm);
   if (game) {
     console.log(`Found game: ${game.id} (${game.name})`);
     getAppInfo(game.id);
