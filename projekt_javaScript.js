@@ -1,7 +1,6 @@
 async function searchForGame(name) {
   const apiKey = "A6889A74CB7B9073C9AA366EDA37ADFA";
-  const url = `https://api.steampowered.com/ISteamApps/GetAppList/v2?key=${apiKey}`;
-  //blir bara "Game not found om &type=game&include_non_steam_sp=0 används i slutet av urln"
+  const url = `https://api.steampowered.com/ISteamApps/GetAppList/v2?key=${apiKey}&filter=game`;
   try {
     const response = await fetch(url);
     const appList = (await response.json()).applist.apps;
@@ -46,9 +45,8 @@ async function getAppInfo(appId) {
   console.log(name, release_date, detailedDescription, headerImage, website);
 }
 
-async function getPriceInfo(appId, name) {
+async function getPriceInfo(appId) {
   try {
-    //const response = await fetch(`https://www.cheapshark.com/api/1.0/games?steamAppId=${appId}`);
     const response = await fetch(`https://www.cheapshark.com/api/1.0/deals?steamAppID=${appId}`);
     const data = await response.json();
     
@@ -61,12 +59,30 @@ async function getPriceInfo(appId, name) {
         lowestPriceDeal = data[i];
       }
   }
-
   console.log(lowestPriceDeal.salePrice, lowestPriceDeal.storeID);
+  getStoreInfo(lowestPriceDeal.storeID);
+
 
   } catch (error) {
     console.error(error);
   }
+}
+
+async function getStoreInfo(storeId) {
+  const response = await fetch(`https://www.cheapshark.com/api/1.0/stores`);
+  const data = await response.json();
+
+  let store;
+
+  for(let i = 0; i < data.length; i++) {
+    if (data[i].storeID === storeId) {
+      store = data[i];
+      break;
+    }
+  }
+
+  console.log(store.storeName);
+
 }
 
 
