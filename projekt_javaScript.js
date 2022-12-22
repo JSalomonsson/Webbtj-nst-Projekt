@@ -17,10 +17,11 @@ async function searchForGame(name) {
 }
 
 async function main() {
-  const game = await searchForGame("Half-Life 2: Episode One");
+  const game = await searchForGame("Just Cause 2");
   if (game) {
     console.log(`Found game: ${game.id} (${game.name})`);
     getAppInfo(game.id);
+    getPriceInfo(game.id, game.name);
   } else {
     console.log("Game not found");
   }
@@ -40,6 +41,27 @@ async function getAppInfo(appId) {
   console.log(name, release_date, detailedDescription, headerImage, website);
 }
 
+async function getPriceInfo(appId, name) {
+  try {
+    //const response = await fetch(`https://www.cheapshark.com/api/1.0/games?steamAppId=${appId}`);
+    const response = await fetch(`https://www.cheapshark.com/api/1.0/deals?steamAppID=${appId}`);
+    const data = await response.json();
+    
+    let lowestPrice = 100000;
+    let lowestPriceDeal;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].salePrice < lowestPrice) {
+        lowestPrice = data[i].salePrice;
+        lowestPriceDeal = data[i];
+      }
+  }
+
+  console.log(lowestPriceDeal.salePrice, lowestPriceDeal.storeID);
+
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 
-main();
