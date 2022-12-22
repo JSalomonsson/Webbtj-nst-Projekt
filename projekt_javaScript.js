@@ -31,12 +31,15 @@ async function getAppInfo(appId) {
   const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`);
   const data = await response.json();
   const appData = data[appId].data;
+  var header = document.getElementById('h3');
 
   const name = appData.name;
   const release_date = appData.release_date;
   const detailedDescription = appData.detailed_description;
   const headerImage = appData.header_image;
   const website = appData.website;
+
+  header.innerHTML = detailedDescription;
 
   console.log(name, release_date, detailedDescription, headerImage, website);
 }
