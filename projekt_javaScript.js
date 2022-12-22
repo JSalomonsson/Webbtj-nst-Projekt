@@ -32,6 +32,7 @@ async function getAppInfo(appId) {
   const data = await response.json();
   const appData = data[appId].data;
   var header = document.getElementById('h3');
+  var image = document.getElementById('my-image');
 
   const name = appData.name;
   const release_date = appData.release_date;
@@ -40,6 +41,7 @@ async function getAppInfo(appId) {
   const website = appData.website;
 
   header.innerHTML = detailedDescription;
+  image.src = headerImage;
 
   console.log(name, release_date, detailedDescription, headerImage, website);
 }

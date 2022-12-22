@@ -14,11 +14,17 @@
             display: inline-block;       
             font-size: 16px;     
             }   
+            #infobox{
+                margin: auto;
+                text-align: center;
+                width: 50%;
+            }
             </style> 
     </head> 
         <body>   
             <button class="button" onclick="main()">Click me</button>
-            <div style="border: 1px solid black; border-color: black;">
+            <div id="infobox" style="border: 1px solid black; border-color: black;">
+                <img id="my-image" src="placeholder.jpg" alt="">
                 <h3 id="h3">Header</h3>
                 <p id="info">Content</p>
               </div>              
