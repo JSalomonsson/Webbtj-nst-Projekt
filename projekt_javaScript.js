@@ -57,12 +57,9 @@ async function getPriceInfo(appId) {
     const response = await fetch(`https://www.cheapshark.com/api/1.0/deals?steamAppID=${appId}`); //uses cheapshark API
     const data = await response.json(); //retrieves Json info
     var header = document.getElementById('h4');
-  
-    //let lowestPrice = 100000;
-    //let lowestPriceDeal;
 
-    const prices = data.map(data => data.salePrice);
-    const minPrice = Math.min(...prices);
+    const prices = data.map(data => data.salePrice); //create map with all saleprices
+    const minPrice = Math.min(...prices); //find the lowest price from map
     console.log(minPrice);
 
     for (let i = 0; i < data.length; i++) {
@@ -97,7 +94,6 @@ async function getStoreInfo(storeId) {
   var h4 = document.getElementById("h4");
   h4.innerHTML += "\n Store name: " + store.storeName;
   console.log(store.storeName);
-
 }
 
 
