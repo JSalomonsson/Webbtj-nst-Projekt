@@ -58,23 +58,23 @@ async function getPriceInfo(appId) {
     const data = await response.json(); //retrieves Json info
     var header = document.getElementById('h4');
   
-    
-    let lowestPrice = 100000;
-    let lowestPriceDeal;
+    //let lowestPrice = 100000;
+    //let lowestPriceDeal;
+
+    const prices = data.map(data => data.salePrice);
+    const minPrice = Math.min(...prices);
+    console.log(minPrice);
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].salePrice < lowestPrice) {
-        lowestPrice = data[i].salePrice; //searches lowest price for game
+      if (data[i].salePrice == minPrice) {
         lowestPriceDeal = data[i];
       }
   }
   header.innerHTML = 
   "Lowest Price: $" + lowestPriceDeal.salePrice;
   
-
   console.log(lowestPriceDeal.salePrice, lowestPriceDeal.storeID);
   getStoreInfo(lowestPriceDeal.storeID);
-
 
   } catch (error) {
     console.error(error);
