@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  html,body{
+    overflow-x: hidden;
+    color: white;
+  }
+
+  a{
+    text-decoration: none;
+    font-family:none;
+    color: rgb(235, 110, 110);
+  }
+
+  #wrapper{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("img/prot.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  #wrapper > header{
+    max-width: 80%;
+    margin: auto;
+  }
+
+  #wrapper > header > h1{
+    padding-top:25px;
+    float: left;
+  }
+
+  #wrapper > header > form{
+    padding: 30px 0 100px 0;
+    margin-left: 80%;
+  }
+
+  #contain{
+    max-width: 80%;
+    margin: auto;
+  }
+  
+  .button {            
+    border: none;       
+    color: white;       
+    padding: 15px 32px;       
+    text-align: center;       
+    text-decoration: none;       
+    display: inline-block;       
+    font-size: 16px;     
+    }   
+    #infobox{
+        margin: auto;
+        text-align: center;
+        width: 50%;
+    }
