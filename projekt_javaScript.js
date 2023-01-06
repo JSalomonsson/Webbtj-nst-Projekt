@@ -30,6 +30,7 @@ async function main(searchTerm) {
     alert("Could not find the game");
   }
 }
+
 //Method using games ID to fetch details about that particular game through the steam AppDetails call.
 async function getAppInfo(appId) {
   const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`);
@@ -96,4 +97,28 @@ async function getStoreInfo(storeId) {
   console.log(store.storeName);
 }
 
+async function getNewsForGame(appId) {
+  try {
+    // Make a request to the Steam API to get the latest news for the given app ID
+    const response = await fetch(`http://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=3&maxlength=300`);
+    const data = await response.json();
 
+    // Create an HTML string for the news items
+    let newsHTML = '';
+    for (let i = 0; i < data.appnews.newsitems.length; i++) {
+      newsHTML += `
+        <div class="news-item">
+          <h2>${data.appnews.newsitems[i].title}</h2>
+          <div>${data.appnews.newsitems[i].contents}</div>
+          <a href="${data.appnews.newsitems[i].url}">Read the full article</a>
+        </div>
+      `;
+    }
+
+    // Insert the news items into the page
+    let newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = newsHTML;
+  } catch (error) {
+    console.error(error);
+  }
+}
