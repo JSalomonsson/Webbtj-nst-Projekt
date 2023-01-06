@@ -34,23 +34,26 @@ async function main(searchTerm) {
 
 //Method using games ID to fetch details about that particular game through the steam AppDetails call.
 async function getAppInfo(appId) {
-  const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`);
-  const data = await response.json();
-  const appData = data[appId].data;
-  var header = document.getElementById('h3');
-  var image = document.getElementById('my-image');
+  try { const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`);
+    const data = await response.json();
+    const appData = data[appId].data;
+    var header = document.getElementById('h3');
+    var image = document.getElementById('my-image');
 
-  //the data that is retrieved
-  const name = appData.name;
-  const release_date = appData.release_date;
-  const detailedDescription = appData.detailed_description;
-  const headerImage = appData.header_image;
-  const website = appData.website;
+    //the data that is retrieved
+    const name = appData.name;
+    const release_date = appData.release_date;
+    const detailedDescription = appData.detailed_description;
+    const headerImage = appData.header_image;
+    const website = appData.website;
 
-  header.innerHTML = detailedDescription;
-  image.src = headerImage;
+    header.innerHTML = detailedDescription;
+    image.src = headerImage;
 
-  console.log(name, release_date, detailedDescription, headerImage, website);
+    console.log(name, release_date, detailedDescription, headerImage, website);
+  } catch(error) {
+    console.error(error);
+  }
 }
 
 //method using game ID to get price info about the game like discounts
@@ -70,18 +73,20 @@ async function getPriceInfo(appId) {
       }
   }
   header.innerHTML =
-  "Lowest Price: $" + lowestPriceDeal.salePrice;
+  "Lowest Price: $" + lowestPriceDeal.salePrice + "<br>";
 
   console.log(lowestPriceDeal.salePrice, lowestPriceDeal.storeID);
   getStoreInfo(lowestPriceDeal.storeID);
 
   } catch (error) {
     console.error(error);
+    header.innerHTML = "Could not find a discount for the game."
   }
 }
 
 //Method returning store info through the store ID.
 async function getStoreInfo(storeId) {
+ try {
   const response = await fetch(`https://www.cheapshark.com/api/1.0/stores`); //uses cheapshark API
   const data = await response.json();
 
@@ -94,8 +99,11 @@ async function getStoreInfo(storeId) {
     }
   }
   var h4 = document.getElementById("h4");
-  h4.innerHTML += "\n Store name: " + store.storeName;
+  h4.innerHTML += "Store: " + store.storeName;
   console.log(store.storeName);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function getNewsForGame(appId) {
