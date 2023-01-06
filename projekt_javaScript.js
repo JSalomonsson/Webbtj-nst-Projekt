@@ -3,7 +3,7 @@ async function searchForGame(name) {
   const apiKey = "A6889A74CB7B9073C9AA366EDA37ADFA"; //call the steam API and use GetAppList
   const url = `https://api.steampowered.com/ISteamApps/GetAppList/v2?key=${apiKey}&filter=game`;
   try {
-    const response = await fetch(url); 
+    const response = await fetch(url);
     const appList = (await response.json()).applist.apps; //get Json response
 
     for (const app of appList) {
@@ -25,6 +25,7 @@ async function main(searchTerm) {
     console.log(`Found game: ${game.id} (${game.name})`);
     getAppInfo(game.id);
     getPriceInfo(game.id, game.name);
+    getNewsForGame(game.id)
   } else {
     console.log("Game not found");
     alert("Could not find the game");
@@ -68,9 +69,9 @@ async function getPriceInfo(appId) {
         lowestPriceDeal = data[i];
       }
   }
-  header.innerHTML = 
+  header.innerHTML =
   "Lowest Price: $" + lowestPriceDeal.salePrice;
-  
+
   console.log(lowestPriceDeal.salePrice, lowestPriceDeal.storeID);
   getStoreInfo(lowestPriceDeal.storeID);
 
