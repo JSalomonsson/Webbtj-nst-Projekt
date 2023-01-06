@@ -79,7 +79,7 @@ async function getPriceInfo(appId) {
 
   } catch (error) {
     console.error(error);
-    header.innerHTML = "Could not find a discount for the game."
+    header.innerHTML = "Could not find any price information about this game."
   }
 }
 
