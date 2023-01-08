@@ -115,6 +115,7 @@ async function getNewsForGame(appId) {
 
     // Create an HTML string for the news items
     let newsHTML = '';
+    newsHTML += '<h1> Game News </h1>'
     for (let i = 0; i < data.appnews.newsitems.length; i++) {
       newsHTML += `
         <div class="news-item">
