@@ -76,6 +76,7 @@ async function getPriceInfo(appId) {
   
   console.log(lowestPriceDeal.salePrice, lowestPriceDeal.storeID);
   getStoreInfo(lowestPriceDeal.storeID);
+  lowestPriceDeal = null;
 
   } catch (error) {
     console.error(error);
