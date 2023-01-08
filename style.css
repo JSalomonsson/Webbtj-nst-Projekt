@@ -1,14 +1,15 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  html,body{
-    overflow-x: hidden;
-    color: white;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html,body{
+  overflow-x: hidden;
+  color: white;
+  background-color: rgba(70, 65, 65, 0.438);
+}
 
   a{
     text-decoration: none;
@@ -17,11 +18,12 @@
   }
 
   #wrapper{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.397), rgba(0, 0, 0, 0.5)),
     url("img/prot.jpg");
     background-position: center;
     background-size: cover;
     height: 100vh;
+    
   }
 
   #wrapper > header{
@@ -39,22 +41,65 @@
     margin-left: 80%;
   }
 
-  #contain{
-    max-width: 80%;
-    margin: auto;
+#contain{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin: auto;
+}
+
+  #discountbox{
+    background-color: rgba(0, 0, 0, 0.068);
+    float: left;
+    width: 100%;
+  }
+
+  #h4{
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+   
   }
   
-  .button {            
-    border: none;       
-    color: white;       
-    padding: 15px 32px;       
-    text-align: center;       
-    text-decoration: none;       
-    display: inline-block;       
-    font-size: 16px;     
-    }   
-    #infobox{
-        margin: auto;
-        text-align: center;
-        width: 50%;
+  #infobox{
+    width:100%;
+  }
+
+    #my-image{
+      float: left;
+    }
+
+    #h3{
+      padding: 10px;
+    }
+
+    #h3 >h1{
+      background-color: black;
+    }
+
+    #h3 > p{
+      display: flex;
+      flex-wrap: wrap;
+      /*max-width: 1200px;*/
+      margin-top: 170px;
+    }
+
+    #h3 > p > img{
+      width: 23%;
+      margin: 1%;
+
+      border: 1px solid black;
+      background-color: white;
+      box-sizing: border-box;
+      box-shadow: 0 0 5px #666;
+
+      flex-grow: 1;
+
+      float: left;
+      margin-right: 5px;
+    }
+
+    #h3 > p > strong{
+      color: #eee;
+      padding: 5px;
     }
