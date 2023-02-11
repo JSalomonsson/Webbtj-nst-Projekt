@@ -1,5 +1,11 @@
 //method used to search for a game with name as input
 async function searchForGame(name) {
+  document.getElementById('my-image').style.visibility="hidden";
+  document.getElementById('news-container').style.visibility="hidden";
+  var header = document.getElementById('h3');
+  header.innerHTML = null;
+  var header2 = document.getElementById('h4');
+  header2.innerHTML = "Searching...";
   const apiKey = "A6889A74CB7B9073C9AA366EDA37ADFA"; //call the steam API and use GetAppList
   const url = `https://api.steampowered.com/ISteamApps/GetAppList/v2?key=${apiKey}&filter=game`;
   try {
@@ -28,7 +34,8 @@ async function main(searchTerm) {
     getNewsForGame(game.id)
   } else {
     console.log("Game not found");
-    alert("Could not find the game");
+    var header = document.getElementById('h4');
+    header.innerHTML = "Could not find game, make sure you spelled it correctly. If you spelled it correctly the game might not exist in the steam database"
   }
 }
 
@@ -49,6 +56,7 @@ async function getAppInfo(appId) {
 
     header.innerHTML = detailedDescription;
     image.src = headerImage;
+    document.getElementById('my-image').style.visibility="visible";
 
     console.log(name, release_date, detailedDescription, headerImage, website);
   } catch(error) {
@@ -129,6 +137,7 @@ async function getNewsForGame(appId) {
     // Insert the news items into the page
     let newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = newsHTML;
+    document.getElementById('news-container').style.visibility="visible";
   } catch (error) {
     console.error(error);
   }
